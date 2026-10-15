@@ -119,6 +119,12 @@ async def main() -> None:
         help="Seconds to wait after TTS finishes before opening the mic for continued conversation (default: 0.5)",
     )
     parser.add_argument(
+        "--unduck-delay",
+        type=float,
+        default=0.0,
+        help="Seconds to keep music ducked after TTS finishes (default: 0.0)",
+    )
+    parser.add_argument(
         "--wakeup-sound",
         default=str(_SOUNDS_DIR / "wake_word_triggered.flac"),
         help="Directory and file name for wake sound (when you say the wake word)",
@@ -451,6 +457,7 @@ async def main() -> None:
         preferences_path=preferences_path,
         refractory_seconds=args.refractory_seconds,
         continue_conversation_delay=args.continue_conversation_delay,
+        unduck_delay=args.unduck_delay,
         output_only=args.output_only,
         download_dir=args.download_dir,
         volume=initial_volume,

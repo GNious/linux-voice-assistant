@@ -1020,7 +1020,12 @@ class VoiceSatelliteProtocol(APIServer):
             threading.Timer(self.state.continue_conversation_delay, _start_continued_conversation).start()
         else:
             self._continue_conversation = False
-            self.unduck()
+            unduck_delay = self.state.unduck_delay
+            if unduck_delay > 0:
+                _LOGGER.debug("Unducking after %.2fs", unduck_delay)
+                threading.Timer(unduck_delay, self.unduck).start()
+            else:
+                self.unduck()
             self._emit(LVAEvent.IDLE)
 
         _LOGGER.debug("TTS response finished")

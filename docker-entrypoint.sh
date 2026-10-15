@@ -92,6 +92,10 @@ if [ -n "${CONTINUE_CONVERSATION_DELAY}" ]; then
   EXTRA_ARGS+=( "--continue-conversation-delay" "$CONTINUE_CONVERSATION_DELAY" )
 fi
 
+if [ -n "${UNDUCK_DELAY}" ]; then
+  EXTRA_ARGS+=( "--unduck-delay" "$UNDUCK_DELAY" )
+fi
+
 if [ -n "${WAKEUP_SOUND}" ]; then
   EXTRA_ARGS+=( "--wakeup-sound" "$WAKEUP_SOUND" )
 fi
